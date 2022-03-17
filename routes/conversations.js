@@ -44,6 +44,7 @@ router.get("/find/:firstUserId/:secondUserId", async (req, res) => {
   }
 });
 
+
 router.get("/chat/:chatId", async (req, res) => {
   try {
     const chat = await Conversation.findById(req.params.chatId);

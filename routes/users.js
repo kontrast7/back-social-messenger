@@ -69,14 +69,13 @@ router.get("/friends/:userId", async (req, res) => {
       const { _id, username, profilePicture } = friend;
       friendList.push({ _id, username, profilePicture });
     });
-    res.status(200).json(friendList)
+    res.status(200).json(friendList);
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
 //follow a user
-
 router.put("/:id/follow", async (req, res) => {
   if (req.body.userId !== req.params.id) {
     try {
@@ -98,7 +97,6 @@ router.put("/:id/follow", async (req, res) => {
 });
 
 //unfollow a user
-
 router.put("/:id/unfollow", async (req, res) => {
   if (req.body.userId !== req.params.id) {
     try {
@@ -116,6 +114,15 @@ router.put("/:id/unfollow", async (req, res) => {
     }
   } else {
     res.status(403).json("you cant unfollow yourself");
+  }
+});
+
+router.get("/all/:id", async (req, res) => {
+  try {
+    const all = await User.find({ _id: { $ne: req.params.id } })
+    res.status(200).json(all);
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 
