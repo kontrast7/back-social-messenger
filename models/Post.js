@@ -6,7 +6,7 @@ const PostSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    description: {
+    desc: {
       type: String,
       max: 500,
     },
@@ -16,7 +16,7 @@ const PostSchema = new mongoose.Schema(
     likes: {
       type: Array,
       default: [],
-    }
+    },
   },
   { timestamps: true }
 );
