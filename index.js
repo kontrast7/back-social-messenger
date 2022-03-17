@@ -12,6 +12,7 @@ const conversationRoute = require("./routes/conversations");
 const messageRoute = require("./routes/messages");
 const router = express.Router();
 const path = require("path");
+const cors = require('cors')
 
 dotenv.config();
 
@@ -30,6 +31,7 @@ app.use("/images", express.static(path.join(__dirname, "public/images")));
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
+app.use(cors())
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -38,8 +40,6 @@ app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Credentials", true);
   next();
 });
-
-
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
