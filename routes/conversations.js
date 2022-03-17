@@ -4,8 +4,10 @@ const Conversation = require("../models/Conversation");
 //new conv
 
 router.post("/", async (req, res) => {
+  const temp = Object.values(req.body).map(item => item)
   const newConversation = new Conversation({
-    members: [req.body.senderId, req.body.receiverId],
+    // members: [req.body.senderId, req.body.receiverId],
+    members: temp,
   });
 
   try {
@@ -41,5 +43,15 @@ router.get("/find/:firstUserId/:secondUserId", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+router.get("/chat/:chatId", async (req, res) => {
+  try {
+    const chat = await Conversation.findById(req.params.chatId);
+    res.status(200).json(chat);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 
 module.exports = router;
