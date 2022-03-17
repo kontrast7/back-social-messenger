@@ -12,7 +12,7 @@ const conversationRoute = require("./routes/conversations");
 const messageRoute = require("./routes/messages");
 const router = express.Router();
 const path = require("path");
-const cors = require('cors')
+const cors = require("cors");
 
 dotenv.config();
 
@@ -20,7 +20,7 @@ const PORT = process.env.PORT || 8800;
 
 mongoose.connect(
   process.env.MONGO_URL,
-  { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex:true },
+  { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true },
   () => {
     console.log("Connected to MongoDB");
   }
@@ -31,7 +31,12 @@ app.use("/images", express.static(path.join(__dirname, "public/images")));
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
-app.use(cors())
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
+  })
+);
 
 // app.use((req, res, next) => {
 //   res.setHeader("Access-Control-Allow-Origin", "*");
