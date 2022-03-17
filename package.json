@@ -9,9 +9,6 @@
   },
   "author": "",
   "license": "ISC",
-  "engines": {
-    "node": "16.13.2"
-  },
   "dependencies": {
     "bcrypt": "^5.0.1",
     "dotenv": "^16.0.0",
@@ -19,9 +16,7 @@
     "helmet": "^5.0.2",
     "mongoose": "^6.2.6",
     "morgan": "^1.10.0",
+    "nodemon": "^2.0.15",
     "prettier": "^2.6.0"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.7"
   }
 }
