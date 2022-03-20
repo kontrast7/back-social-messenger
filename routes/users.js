@@ -47,11 +47,11 @@ router.get("/", async (req, res) => {
   try {
     const user = userId
       ? await User.findById(userId)
-      : await User.findOne({ username: username });
+      : await User.findOne({ username: (username).toLowerCase() });
     const { password, updatedAt, ...other } = user._doc;
     res.status(200).json(other);
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).json("Can`t find contact");
   }
 });
 
