@@ -13,6 +13,7 @@ const messageRoute = require("./routes/messages");
 const router = express.Router();
 const path = require("path");
 const cors = require("cors");
+const bodyParser  = require("body-parser")
 
 dotenv.config();
 
@@ -29,6 +30,9 @@ app.use("/images", express.static(path.join(__dirname, "public/images")));
 
 //middleware
 app.use(express.json());
+app.use(bodyParser.json({limit: "7mb"}));
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({limit: "7mb", extended: false}));
 app.use(helmet());
 app.use(morgan("common"));
 app.use(
