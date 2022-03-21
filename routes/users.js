@@ -18,6 +18,8 @@ router.put("/:id", async (req, res) => {
         $set: req.body,
       });
       const temp = await user
+
+      
       res.status(200).json(temp);
     } catch (err) {
       return res.status(500).json(err);
