@@ -27,4 +27,13 @@ router.get("/:conversationId", async (req, res) => {
   }
 });
 
+// router.get("/find/:id", async (req, res) => {
+//   try {
+//     const all = await Message.find({ _id: { $ne: req.params.id } })
+//     res.status(200).json(all);
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
+
 module.exports = router;
