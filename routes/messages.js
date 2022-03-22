@@ -27,6 +27,19 @@ router.get("/:conversationId", async (req, res) => {
   }
 });
 
+router.delete("/delete/:id", async (req, res) => {
+  if (req.body.userId || req.body.isAdmin) {
+    try {
+      await Message.findByIdAndDelete(req.params.id);
+      res.status(200).json("Message deleted");
+    } catch (err) {
+      return res.status(500).json(err);
+    }
+  } else {
+    return res.status(403).json("You can delete message only your account!");
+  }
+});
+
 // router.get("/find/:id", async (req, res) => {
 //   try {
 //     const all = await Message.find({ _id: { $ne: req.params.id } })
