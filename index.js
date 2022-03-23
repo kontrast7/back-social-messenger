@@ -104,6 +104,9 @@ io.on("connection", (socket) => {
   //when ceonnect
   console.log("a user connected.");
 
+
+  
+
   //take userId and socketId from user
   socket.on("addUser", (userId) => {
     addUser(userId, socket.id);
@@ -126,3 +129,9 @@ io.on("connection", (socket) => {
     io.emit("getUsers", users);
   });
 });
+
+
+io.configure(function () { 
+  io.set("transports", ["xhr-polling"]); 
+  io.set("polling duration", 10); 
+}); 
