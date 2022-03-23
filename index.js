@@ -129,9 +129,3 @@ io.on("connection", (socket) => {
     io.emit("getUsers", users);
   });
 });
-
-
-io.configure(function () { 
-  io.set("transports", ["xhr-polling"]); 
-  io.set("polling duration", 10); 
-}); 
